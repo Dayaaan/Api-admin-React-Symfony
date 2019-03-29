@@ -2,143 +2,62 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=25, unique=true)
      */
-    private $lastName;
-
+    private $username;
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=500)
      */
-    private $firstName;
-
+    private $password;
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="is_active", type="boolean")
      */
-    private $email;
+    private $isActive;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $adress;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $city;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $zipcode;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $phone;
-
-    public function getId(): ?int
+    public function __construct($username)
     {
-        return $this->id;
+        $this->isActive = true;
+        $this->username = $username;
     }
-
-    public function getLastName(): ?string
+    public function getUsername()
     {
-        return $this->lastName;
+        return $this->username;
     }
-
-    public function setLastName(string $lastName): self
+    public function getSalt()
     {
-        $this->lastName = $lastName;
-
-        return $this;
+        return null;
     }
-
-    public function getFirstName(): ?string
+    public function getPassword()
     {
-        return $this->firstName;
+        return $this->password;
     }
-
-    public function setFirstName(string $firstName): self
+    public function setPassword($password)
     {
-        $this->firstName = $firstName;
-
-        return $this;
+        $this->password = $password;
     }
-
-    public function getEmail(): ?string
+    public function getRoles()
     {
-        return $this->email;
+        return array('ROLE_USER');
     }
-
-    public function setEmail(string $email): self
+    public function eraseCredentials()
     {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getAdress(): ?string
-    {
-        return $this->adress;
-    }
-
-    public function setAdress(string $adress): self
-    {
-        $this->adress = $adress;
-
-        return $this;
-    }
-
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function setCity(string $city): self
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function getZipcode(): ?string
-    {
-        return $this->zipcode;
-    }
-
-    public function setZipcode(string $zipcode): self
-    {
-        $this->zipcode = $zipcode;
-
-        return $this;
-    }
-
-    public function getPhone(): ?string 
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(string $phone): self
-    {
-        $this->phone = $phone;
-
-        return $this;
     }
 }
