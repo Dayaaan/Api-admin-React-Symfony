@@ -4,7 +4,7 @@ nelmio_cors:
         allow_origin: ['http://localhost:3000']
         allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
         allow_headers: ['Content-Type', 'Authorization']
-        expose_headers: ['Link']
+        expose_headers: ['Content-Range', 'Link', 'X-Total-Count']
         max_age: 3600
     paths:
         '^/api/':
@@ -12,5 +12,5 @@ nelmio_cors:
             allow_origin: ['http://localhost:3000'] # You probably want to change this regex to match your real domain
             allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
             allow_headers: ['Content-Type', 'Authorization']
-            expose_headers: ['Link']
+            expose_headers: ['Content-Range', 'Link', 'X-Total-Count']
             max_age: 3600

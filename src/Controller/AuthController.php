@@ -1,10 +1,12 @@
 <?php
 namespace App\Controller;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
+use Doctrine\DBAL\Schema\View;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Entity\User;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 class AuthController extends AbstractController
 {
     public function register(Request $request, UserPasswordEncoderInterface $encoder)
