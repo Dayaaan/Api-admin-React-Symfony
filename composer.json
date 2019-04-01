@@ -39,9 +39,6 @@
         "preferred-install": {
             "*": "dist"
         },
-        "platform": {
-            "php": "5.5.9"
-        },
         "sort-packages": true
     },
     "autoload": {
