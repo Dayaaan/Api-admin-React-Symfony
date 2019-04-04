@@ -1,7 +1,7 @@
 nelmio_cors:
     defaults:
         origin_regex: true
-        allow_origin: ['http://localhost:3000']
+        allow_origin: ['*']
         allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
         allow_headers: ['Content-Type', 'Authorization']
         expose_headers: ['Content-Range', 'Link', 'X-Total-Count']
@@ -9,7 +9,7 @@ nelmio_cors:
     paths:
         '^/api/':
             origin_regex: true
-            allow_origin: ['http://localhost:3000'] # You probably want to change this regex to match your real domain
+            allow_origin: ['*'] # You probably want to change this regex to match your real domain
             allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
             allow_headers: ['Content-Type', 'Authorization']
             expose_headers: ['Content-Range', 'Link', 'X-Total-Count']
